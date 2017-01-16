@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team4930.robot;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -9,8 +8,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4930.robot.commands.ExampleCommand;
-import org.usfirst.frc.team4930.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team4930.robot.commands.RunMotor;
+import org.usfirst.frc.team4930.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4930.robot.subsystems.LimitSwitch;
 
 /**
@@ -22,10 +21,11 @@ import org.usfirst.frc.team4930.robot.subsystems.LimitSwitch;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static Command runMotor;
+	
 	public static OI oi;
-
-	Command autonomousCommand;
+	public static DriveTrain driveTrain;
+	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -34,8 +34,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+	  RobotMap.init();
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		driveTrain = new DriveTrain();
+		runMotor = new RunMotor();
+		chooser.addDefault("Default Auto", new RunMotor());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
@@ -68,18 +71,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
 	}
 
 	/**
@@ -91,17 +82,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	@Override
-	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
-		
-	LimitSwitch limitSwitch = new LimitSwitch(0);
-	limitSwitch.print();
-	
+	public void teleopInit() { 
+	  LimitSwitch limitSwitch = new LimitSwitch(0);
+	  limitSwitch.print();
 	}
 
 	/**
