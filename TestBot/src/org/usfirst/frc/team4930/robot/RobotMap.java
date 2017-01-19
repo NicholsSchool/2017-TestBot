@@ -18,10 +18,10 @@ public class RobotMap {
     motor.setSafetyEnabled(true);
     motor.setExpiration(0.1);
     
-    lim = new AbstractLimitSwitch(0);
+    lim = new AbstractLimitSwitch(1);
     
-    if(lim.get()){
-      // do something
+    if(lim.get() == true){
+      motor.set(0.5);
     }
   }
 }
