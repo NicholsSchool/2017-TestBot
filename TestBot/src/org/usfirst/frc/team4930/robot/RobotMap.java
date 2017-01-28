@@ -41,7 +41,5 @@ public class RobotMap {
     //pneumatics
     doubleSolenoid = new DoubleSolenoid(50, 0, 1);
     compressor = new Compressor(50);
-    
-    
     }
 }

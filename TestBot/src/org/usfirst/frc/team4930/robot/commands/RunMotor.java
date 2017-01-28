@@ -19,7 +19,7 @@ public class RunMotor extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-      Robot.driveTrain.move(Robot.oi.getJoystick1());
+      Robot.driveTrain.move(Robot.oi.getJoystick0());
     }
 
     // Make this return true when this Command no longer needs to run execute()
