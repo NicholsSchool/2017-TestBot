@@ -6,6 +6,9 @@ import org.usfirst.frc.team4930.robot.subsystems.PulseWidthRangeFinder;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -18,7 +21,11 @@ public class RobotMap {
   
   //sensors
   public static AbstractLimitSwitch lim;
-  //public static PulseWidthRangeFinder ultrasonic;
+  public static PulseWidthRangeFinder ultrasonic;
+  
+  //pneumatics
+  public static DoubleSolenoid doubleSolenoid;
+  public static Compressor compressor;
   
   public static void init(){
     motor = new CANTalon(1);
@@ -28,7 +35,13 @@ public class RobotMap {
     motor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     
     //sensors
-    //ultrasonic = new PulseWidthRangeFinder(0);
+    ultrasonic = new PulseWidthRangeFinder(0);
     lim = new AbstractLimitSwitch(1);
+    
+    //pneumatics
+    doubleSolenoid = new DoubleSolenoid(50, 0, 1);
+    compressor = new Compressor(50);
+    
+    
     }
 }

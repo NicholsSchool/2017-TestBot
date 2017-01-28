@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4930.robot.subsystems.AbstractLimitSwitch;
 import org.usfirst.frc.team4930.robot.subsystems.PulseWidthRangeFinder;
 import org.usfirst.frc.team4930.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4930.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team4930.robot.Robot;
 
 /**
@@ -21,14 +22,12 @@ import org.usfirst.frc.team4930.robot.Robot;
  * directory.
  */
 public class Robot extends IterativeRobot {
-  
-    public static SendableChooser autoChooser;
 	
 	//subsystems
 	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static AbstractLimitSwitch abstractLimitSwitch;
-	public static PWM ultra;
+	public static Pneumatics pneumatics;
 
 	public void robotInit() {
 	  
@@ -38,7 +37,7 @@ public class Robot extends IterativeRobot {
 		//instantiate subsystems
 		driveTrain = new DriveTrain();
 		abstractLimitSwitch = new AbstractLimitSwitch();
-		autoChooser = new SendableChooser();
+		pneumatics = new Pneumatics();
 	}
 
 	public void disabledInit() {}
@@ -54,7 +53,6 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-	  ultra = new PWM(9);
 	}
 
 	public void teleopPeriodic() {
@@ -66,7 +64,6 @@ public class Robot extends IterativeRobot {
 //      SmartDashboard.putNumber("average value", AnalogRangeFinder.ultrasonic.getAverageValue());
 //      SmartDashboard.putNumber("encoder velocity", RobotMap.motor.getEncVelocity());
 //      SmartDashboard.putNumber("encoder position", RobotMap.motor.getEncPosition());
-		SmartDashboard.putNumber("getRaw()", ultra.getRaw());
 	}
 
 	public void testInit() {}
