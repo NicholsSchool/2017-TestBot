@@ -11,24 +11,27 @@ public class AbstractLimitSwitch extends Subsystem {
 
       public void initDefaultCommand() {}
       
+      public AbstractLimitSwitch() {}
+      
       public AbstractLimitSwitch(int channel) {
         limitSwitch = new DigitalInput(channel);
         //  instantiating limit switch with channel input
-        initial = limitSwitch.get();
+        initial = limitSwitch.get();//t
         //  storing the initial value of limit switch for later comparison to current value
-        value = false;
-        //  setting inherent value of limit switch as false
       }
       
       public boolean get(){
-        if(initial != limitSwitch.get()){
-          value = true;
-          return value;
-          //  if the current value is different than the original value, set the limit switch as true and return
+        if(initial == limitSwitch.get()){
+          return false;
+          //  if the current value is equal to the original value, return false
         }
         else {
-          return value;
-          // if the current value is equal to the original value, return false
+          return true;
+          // if the current value is different than the original value, return true
         }
+      }
+      
+      public boolean getInitial(){
+        return initial;
       }
  }
