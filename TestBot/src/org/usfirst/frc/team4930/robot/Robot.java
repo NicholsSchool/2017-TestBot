@@ -2,15 +2,16 @@
 package org.usfirst.frc.team4930.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4930.robot.commands.RunMotor;
+import org.usfirst.frc.team4930.robot.subsystems.AbstractLimitSwitch;
+import org.usfirst.frc.team4930.robot.subsystems.PulseWidthRangeFinder;
 import org.usfirst.frc.team4930.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4930.robot.subsystems.LimitSwitch;
+import org.usfirst.frc.team4930.robot.Robot;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,90 +21,56 @@ import org.usfirst.frc.team4930.robot.subsystems.LimitSwitch;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	public static Command runMotor;
+  
+    public static SendableChooser autoChooser;
 	
+	//subsystems
 	public static OI oi;
 	public static DriveTrain driveTrain;
-	
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	public static AbstractLimitSwitch abstractLimitSwitch;
+	public static PWM ultra;
 
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
-	@Override
 	public void robotInit() {
+	  
 	  RobotMap.init();
 		oi = new OI();
+		
+		//instantiate subsystems
 		driveTrain = new DriveTrain();
-		runMotor = new RunMotor();
-		chooser.addDefault("Default Auto", new RunMotor());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		abstractLimitSwitch = new AbstractLimitSwitch();
+		autoChooser = new SendableChooser();
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
-	public void disabledInit() {
+	public void disabledInit() {}
 
-	}
-
-	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
-	 */
-	@Override
-	public void autonomousInit() {
-	}
+	public void autonomousInit() {}
 
-	/**
-	 * This function is called periodically during autonomous
-	 */
-	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	@Override
-	public void teleopInit() { 
-	  LimitSwitch limitSwitch = new LimitSwitch(0);
-	  limitSwitch.print();
+	public void teleopInit() {
+	  ultra = new PWM(9);
 	}
 
-	/**
-	 * This function is called periodically during operator control
-	 */
-	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	}
-	
-	@Override
-	public void testInit() {
-		
+//		SmartDashboard.putNumber("range in inches", RobotMap.ultrasonic.getRangeInInches());
+//		SmartDashboard.putNumber("voltage", AnalogRangeFinder.ultrasonic.getVoltage());
+//		SmartDashboard.putNumber("value", AnalogRangeFinder.ultrasonic.getValue());
+//		SmartDashboard.putNumber("average voltage", AnalogRangeFinder.ultrasonic.getAverageVoltage());
+//      SmartDashboard.putNumber("average value", AnalogRangeFinder.ultrasonic.getAverageValue());
+//      SmartDashboard.putNumber("encoder velocity", RobotMap.motor.getEncVelocity());
+//      SmartDashboard.putNumber("encoder position", RobotMap.motor.getEncPosition());
+		SmartDashboard.putNumber("getRaw()", ultra.getRaw());
 	}
 
-	/**
-	 * This function is called periodically during test mode
-	 */
-	@Override
+	public void testInit() {}
+
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
