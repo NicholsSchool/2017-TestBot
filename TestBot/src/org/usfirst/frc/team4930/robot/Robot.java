@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+	  RobotMap.compressor.setClosedLoopControl(false);
 	}
 
 	public void teleopPeriodic() {

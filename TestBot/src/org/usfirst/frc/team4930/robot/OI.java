@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4930.robot;
 
+import org.usfirst.frc.team4930.robot.commands.CompressorOff;
+import org.usfirst.frc.team4930.robot.commands.CompressorOn;
 import org.usfirst.frc.team4930.robot.commands.ShiftDown;
 import org.usfirst.frc.team4930.robot.commands.ShiftUp;
 
@@ -14,7 +16,9 @@ public class OI {
   public Joystick joystick0;
   public JoystickButton joystick0Button1;
   public JoystickButton joystick0Button2; 
-
+  public JoystickButton joystick0Button3; 
+  public JoystickButton joystick0Button4; 
+  
   public OI() {
       joystick0 = new Joystick(0);
 
@@ -23,6 +27,12 @@ public class OI {
 
       joystick0Button2 = new JoystickButton(joystick0, 2);
       joystick0Button2.whenPressed(new ShiftDown());
+     
+      joystick0Button3 = new JoystickButton(joystick0, 3);
+      joystick0Button3.whenPressed(new CompressorOn());
+      
+      joystick0Button4 = new JoystickButton(joystick0, 4);
+      joystick0Button4.whenPressed(new CompressorOff());
   }
   
   public double getJoystick0() {
