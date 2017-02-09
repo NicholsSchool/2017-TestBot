@@ -2,14 +2,10 @@
 package org.usfirst.frc.team4930.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4930.robot.subsystems.AbstractLimitSwitch;
-import org.usfirst.frc.team4930.robot.subsystems.PulseWidthRangeFinder;
 import org.usfirst.frc.team4930.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4930.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team4930.robot.Robot;

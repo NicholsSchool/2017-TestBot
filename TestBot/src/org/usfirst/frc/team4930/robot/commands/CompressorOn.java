@@ -19,8 +19,10 @@ public class CompressorOn extends Command {
     }
 
     protected void end() {
+      Robot.pneumatics.endCompressing();
     }
     
     protected void interrupted() {
+      Robot.pneumatics.endCompressing();
     }
 }

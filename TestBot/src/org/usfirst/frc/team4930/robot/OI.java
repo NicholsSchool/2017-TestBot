@@ -29,10 +29,8 @@ public class OI {
       joystick0Button2.whenPressed(new ShiftDown());
      
       joystick0Button3 = new JoystickButton(joystick0, 3);
-      joystick0Button3.whenPressed(new CompressorOn());
+      joystick0Button3.whileHeld(new CompressorOn());
       
-      joystick0Button4 = new JoystickButton(joystick0, 4);
-      joystick0Button4.whenPressed(new CompressorOff());
   }
   
   public double getJoystick0() {
