@@ -8,6 +8,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 
 
 /**
@@ -25,10 +26,11 @@ public class RobotMap {
   
   //pneumatics
   public static DoubleSolenoid doubleSolenoid;
+  public static Solenoid LEDSolenoid;
   public static Compressor compressor;
   
   public static void init(){
-    motor = new CANTalon(1);
+    motor = new CANTalon(2);
     
     motor.setSafetyEnabled(true);
     motor.setExpiration(0.1);
@@ -40,6 +42,10 @@ public class RobotMap {
     
     //pneumatics
     doubleSolenoid = new DoubleSolenoid(50, 0, 1);
+    
+    LEDSolenoid = new Solenoid(50, 4);
+  //  LEDSolenoid.set(true);
+    
     compressor = new Compressor(50);
     }
 }

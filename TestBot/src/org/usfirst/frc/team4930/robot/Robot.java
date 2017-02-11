@@ -4,9 +4,11 @@ package org.usfirst.frc.team4930.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4930.robot.subsystems.AbstractLimitSwitch;
 import org.usfirst.frc.team4930.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4930.robot.subsystems.LED;
 import org.usfirst.frc.team4930.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team4930.robot.Robot;
 
@@ -24,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static AbstractLimitSwitch abstractLimitSwitch;
 	public static Pneumatics pneumatics;
+	public static LED led;
 
 	public void robotInit() {
 	  
@@ -34,6 +37,7 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		abstractLimitSwitch = new AbstractLimitSwitch();
 		pneumatics = new Pneumatics();
+		led = new LED();
 	}
 
 	public void disabledInit() {}
@@ -61,6 +65,8 @@ public class Robot extends IterativeRobot {
 //      SmartDashboard.putNumber("average value", AnalogRangeFinder.ultrasonic.getAverageValue());
 //      SmartDashboard.putNumber("encoder velocity", RobotMap.motor.getEncVelocity());
 //      SmartDashboard.putNumber("encoder position", RobotMap.motor.getEncPosition());
+		  
+        SmartDashboard.putBoolean("LED Solenoid Value:", RobotMap.LEDSolenoid.get());
 	}
 
 	public void testInit() {}
