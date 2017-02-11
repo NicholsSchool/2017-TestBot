@@ -3,6 +3,7 @@ package org.usfirst.frc.team4930.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -39,6 +40,9 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		abstractLimitSwitch = new AbstractLimitSwitch();
 		autoChooser = new SendableChooser();
+		
+		
+		 
 	}
 
 	public void disabledInit() {}
@@ -64,9 +68,15 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putNumber("value", AnalogRangeFinder.ultrasonic.getValue());
 //		SmartDashboard.putNumber("average voltage", AnalogRangeFinder.ultrasonic.getAverageVoltage());
 //      SmartDashboard.putNumber("average value", AnalogRangeFinder.ultrasonic.getAverageValue());
-//      SmartDashboard.putNumber("encoder velocity", RobotMap.motor.getEncVelocity());
-//      SmartDashboard.putNumber("encoder position", RobotMap.motor.getEncPosition());
-		SmartDashboard.putNumber("getRaw()", ultra.getRaw());
+        SmartDashboard.putNumber("encoder velocity", RobotMap.motor.getEncVelocity());
+        SmartDashboard.putNumber("encoder position", RobotMap.motor.getEncPosition());
+//      SmartDashboard.putNumber("getRaw()", ultra.getRaw());
+        SmartDashboard.putNumber("UltraSonic Raw:", RobotMap.ultraTest.getRaw());
+     //   Timer.delay(1);
+        SmartDashboard.putNumber("Ultrasonic Inches", RobotMap.ultraTest.getInches());
+//	    SmartDashboard.putNumber("Encoder Distance" , RobotMap.motor.getDistance());
+        SmartDashboard.putNumber("GyroScope:", (RobotMap.testGyro.getAngle() * 1.00));
+		
 	}
 
 	public void testInit() {}
